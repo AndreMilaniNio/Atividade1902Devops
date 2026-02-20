@@ -58,7 +58,8 @@ jobs:
       - name: Criar pasta dist
         run: |
           mkdir dist
-          cp -r src/pages/* dist/
+          cp -r src/index.html dist/
+          cp -r src/pages dist/
           cp -r styles dist/
           cp -r assets dist/ || true
 
