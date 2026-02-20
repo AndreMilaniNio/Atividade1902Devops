@@ -69,10 +69,13 @@ jobs:
           echo "4 Copiando páginas..."
           cp -r src/pages dist/
 
-          echo "5 Copiando pasta assets..."
+          echo "5 Copiando pasta styles..."
+          cp -r styles dist/
+
+          echo "6 Copiando pasta assets..."
           cp -r assets dist/ || true
 
-          echo "6 Listando conteúdo da dist..."
+          echo "7 Listando conteúdo da dist..."
           ls -R dist
 
       # Auditoria de Qualidade
