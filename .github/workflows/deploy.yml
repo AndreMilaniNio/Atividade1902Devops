@@ -1,0 +1,49 @@
+name: Arquivo deploy básico
+
+on:
+  push:
+    branches: [ "master", "development" ]
+  pull_request:
+    branches: [ "master", "development" ]
+
+jobs:
+  validate-project:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositório
+        uses: actions/checkout@v4
+
+      - name: Verificar se index.html existe
+        run: |
+          if [ ! -f "src/pages/index.html" ]; then
+            echo "ERRO: index.html não encontrado em src/pages/"
+            exit 1
+          else
+            echo "index.html encontrado."
+          fi
+
+      - name: Verificar se pasta styles existe
+        run: |
+          if [ ! -d "styles" ]; then
+            echo "ERRO: Pasta 'styles' não encontrada."
+            exit 1
+          else
+            echo "Pasta 'styles' encontrada."
+          fi
+
+      - name: Verificar arquivos CSS obrigatórios
+        run: |
+          FILES=("styles/index.css" "styles/sobre.css" "styles/contato.css" "styles/main.css")
+
+          for file in "${FILES[@]}"; do
+            if [ ! -f "$file" ]; then
+              echo "ERRO: Arquivo CSS obrigatório não encontrado: $file"
+              exit 1
+            else
+              echo "$file encontrado."
+            fi
+          done
+
+      - name: Projeto validado com sucesso
+        run: echo "Estrutura validada! Pronto para deploy."

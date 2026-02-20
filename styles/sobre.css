@@ -1,0 +1,31 @@
+.content {
+  padding: 80px 60px;
+  max-width: 900px;
+  margin: auto;
+}
+
+.content h2 {
+  font-size: 2.2rem;
+  margin-bottom: 30px;
+  font-weight: 300;
+}
+
+.card {
+  background: #111;
+  padding: 30px;
+  margin-top: 30px;
+  border-left: 4px solid #1f3b2c;
+  transition: 0.3s;
+}
+
+.card:hover {
+  background: #161f19;
+  transform: translateY(-5px);
+}
+
+footer {
+  text-align: center;
+  padding: 30px;
+  background: #000;
+  color: #666;
+}
