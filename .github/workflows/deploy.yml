@@ -54,14 +54,23 @@ jobs:
             fi
           done
 
-      # cria a pasta dist (pasta de distribuição)
-      - name: Criar pasta dist
+      # Super-Script de organização
+      - name: Organizar arquivos para deploy
         run: |
+          echo "1️⃣ Limpando dist antiga..."
+          rm -rf dist
+
+          echo "2️⃣ Criando nova pasta dist..."
           mkdir dist
-          cp -r src/index.html dist/
-          cp -r src/pages dist/
-          cp -r styles dist/
+
+          echo "3️⃣ Copiando todos os arquivos HTML..."
+          find . -name "*.html" -exec cp --parents {} dist/ \;
+
+          echo "4️⃣ Copiando pasta assets..."
           cp -r assets dist/ || true
+
+          echo "5️⃣ Listando conteúdo da dist..."
+          ls -R dist
 
       # dá upload na dist
       - name: Upload artifact para pages
