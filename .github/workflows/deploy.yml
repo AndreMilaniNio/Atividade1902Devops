@@ -18,7 +18,7 @@ jobs:
       # Verifica se meu index.html existe
       - name: Verificar se index.html existe
         run: |
-          if [ ! -f "src/pages/index.html" ]; then
+          if [ ! -f "src/index.html" ]; then
             echo "ERRO: index.html não encontrado em src/pages/"
             exit 1
           else
