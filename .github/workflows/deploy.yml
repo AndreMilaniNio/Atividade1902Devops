@@ -57,29 +57,32 @@ jobs:
       # Super-Script de organização
       - name: Organizar arquivos para deploy
         run: |
-          echo "1️⃣ Limpando dist antiga..."
+          echo "1 Limpando dist antiga..."
           rm -rf dist
 
-          echo "2️⃣ Criando nova pasta dist..."
+          echo "2 Criando nova pasta dist..."
           mkdir dist
 
-          echo "3️⃣ Copiando todos os arquivos HTML..."
-          find . -name "*.html" -exec cp --parents {} dist/ \;
+          echo "3 Copiando index.html..."
+          cp src/index.html dist/
 
-          echo "4️⃣ Copiando pasta assets..."
+          echo "4 Copiando páginas..."
+          cp -r src/pages dist/
+
+          echo "5 Copiando pasta assets..."
           cp -r assets dist/ || true
 
-          echo "5️⃣ Listando conteúdo da dist..."
+          echo "6 Listando conteúdo da dist..."
           ls -R dist
 
       # Auditoria de Qualidade
       - name: Auditoria de Qualidade
         run: |
-          echo "🔎 Verificando arquivos principais dentro da dist..."
+          echo "Verificando arquivos principais dentro da dist..."
 
-          test -f dist/src/index.html || { echo "index.html não encontrado!"; exit 1; }
-          test -f dist/src/pages/sobre.html || { echo "sobre.html não encontrado!"; exit 1; }
-          test -f dist/src/pages/contato.html || { echo "contato.html não encontrado!"; exit 1; }
+          test -f dist/index.html || { echo "index.html não encontrado!"; exit 1; }
+          test -f dist/pages/sobre.html || { echo "sobre.html não encontrado!"; exit 1; }
+          test -f dist/pages/contato.html || { echo "contato.html não encontrado!"; exit 1; }
 
           echo "Todos os arquivos principais estão presentes!"
 
