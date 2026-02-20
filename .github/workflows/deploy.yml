@@ -11,9 +11,11 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Clona repositório para o github
       - name: Clonar repositório
         uses: actions/checkout@v4
 
+      # Verifica se meu index.html existe
       - name: Verificar se index.html existe
         run: |
           if [ ! -f "src/pages/index.html" ]; then
@@ -23,6 +25,7 @@ jobs:
             echo "index.html encontrado."
           fi
 
+      # Verifica a pasta styles existem
       - name: Verificar se pasta styles existe
         run: |
           if [ ! -d "styles" ]; then
@@ -32,6 +35,7 @@ jobs:
             echo "Pasta 'styles' encontrada."
           fi
 
+      # Verifica meus arquivos.css
       - name: Verificar arquivos CSS obrigatórios
         run: |
           FILES=("styles/index.css" "styles/sobre.css" "styles/contato.css" "styles/main.css")
@@ -45,5 +49,6 @@ jobs:
             fi
           done
 
+      # mensagem de validação
       - name: Projeto validado com sucesso
         run: echo "Estrutura validada! Pronto para deploy."
