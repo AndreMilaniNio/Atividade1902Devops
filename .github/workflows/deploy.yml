@@ -72,6 +72,17 @@ jobs:
           echo "5️⃣ Listando conteúdo da dist..."
           ls -R dist
 
+      # Auditoria de Qualidade
+      - name: Auditoria de Qualidade
+        run: |
+          echo "🔎 Verificando arquivos principais dentro da dist..."
+
+          test -f dist/src/index.html || { echo "index.html não encontrado!"; exit 1; }
+          test -f dist/src/pages/sobre.html || { echo "sobre.html não encontrado!"; exit 1; }
+          test -f dist/src/pages/contato.html || { echo "contato.html não encontrado!"; exit 1; }
+
+          echo "Todos os arquivos principais estão presentes!"
+
       # dá upload na dist
       - name: Upload artifact para pages
         uses: actions/upload-pages-artifact@v3
