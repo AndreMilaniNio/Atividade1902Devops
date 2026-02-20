@@ -16,7 +16,31 @@
   margin-top: 30px;
   border-left: 4px solid #1f3b2c;
   transition: 0.3s;
-}
+}Atividade1902Devops
+ ├── assets
+ │   └── LOST.jpg
+ ├── src
+ │   ├── index.html
+ │   └── pages
+ │       ├── contato.html
+ │       └── sobre.html
+ └── styles
+     ├── contato.css
+     ├── index.css
+     ├── main.css
+     └── sobre.cssAtividade1902Devops
+                  ├── assets
+                  │   └── LOST.jpg
+                  ├── src
+                  │   ├── index.html
+                  │   └── pages
+                  │       ├── contato.html
+                  │       └── sobre.html
+                  └── styles
+                      ├── contato.css
+                      ├── index.css
+                      ├── main.css
+                      └── sobre.css
 
 .card:hover {
   background: #161f19;
