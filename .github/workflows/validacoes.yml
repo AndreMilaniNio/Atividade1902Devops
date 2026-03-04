@@ -1,0 +1,91 @@
+name: Validação do Projeto
+
+on:
+  push:
+    branches: [ "master", "development" ]
+  pull_request:
+    branches: [ "master", "development" ]
+
+jobs:
+
+  validar-html:
+    name: Validar HTML com htmlhint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositório
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Instalar htmlhint
+        run: npm install -g htmlhint
+
+      - name: Executar validação HTML
+        run: |
+          echo "Validando arquivos HTML..."
+          htmlhint "src/**/*.html"
+
+
+  validar-css:
+    name: Validar CSS com stylelint
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Clonar repositório
+        uses: actions/checkout@v4
+
+      - name: Instalar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Instalar stylelint
+        run: |
+          npm install -g stylelint stylelint-config-standard
+
+      - name: Criar configuração básica do stylelint
+        run: |
+          echo '{
+            "extends": "stylelint-config-standard"
+          }' > .stylelintrc.json
+
+      - name: Executar validação CSS
+        run: |
+          echo "Validando arquivos CSS..."
+          stylelint "styles/**/*.css"
+
+
+  preparar-entrega:
+    name: Preparar Pasta dist
+    runs-on: ubuntu-latest
+
+    # Corrente de dependência (Parte 2)
+    needs: [validar-html, validar-css]
+
+    steps:
+      - name: Clonar repositório
+        uses: actions/checkout@v4
+
+      - name: Criar estrutura dist
+        run: |
+          echo "Limpando dist antiga..."
+          rm -rf dist
+
+          echo "Criando nova pasta dist..."
+          mkdir dist
+
+          echo "Copiando arquivos..."
+
+          cp src/index.html dist/
+          cp -r src/pages dist/
+          cp -r styles dist/
+          cp -r assets dist/ || true
+
+          echo "Listando conteúdo da dist..."
+          ls -R dist
+
+          echo "Pasta dist criada com sucesso!"
