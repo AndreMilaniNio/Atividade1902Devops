@@ -2,9 +2,9 @@ name: Arquivo deploy básico
 
 on:
   push:
-    branches: [ "master", "development" ]
+    branches: [ "master", "development", "feature/entrega-final" ]
   pull_request:
-    branches: [ "master", "development" ]
+    branches: [ "master", "development", "feature/entrega-final" ]
 
 permissions:
   contents: read

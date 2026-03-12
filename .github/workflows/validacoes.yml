@@ -2,9 +2,9 @@ name: Validação do Projeto
 
 on:
   push:
-    branches: [ "master", "development" ]
+    branches: [ "master", "development", "feature/entrega-final" ]
   pull_request:
-    branches: [ "master", "development" ]
+    branches: [ "master", "development", "feature/entrega-final" ]
 
 jobs:
 
